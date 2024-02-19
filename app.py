@@ -1,42 +1,47 @@
-from flask import Flask, redirect, request, session, url_for
-import facebook
+from flask import Flask, redirect, url_for, request, session
+from requests_oauthlib import OAuth2Session
 
 app = Flask(__name__)
-app.secret_key = 'you@wontguessit'  # Replace with a secure secret key
+
+# Facebook OAuth configuration
+CLIENT_ID = '687317540258045'
+CLIENT_SECRET = 'ec6e8f1c07710a41162de17ed1851a3d'
+REDIRECT_URI = 'http://localhost:5000/callback'  # Set this to your callback URL
+
+# Facebook OAuth endpoints
+AUTHORIZATION_BASE_URL = 'https://www.facebook.com/v11.0/dialog/oauth'
+TOKEN_URL = 'https://graph.facebook.com/v11.0/oauth/access_token'
 
 @app.route('/')
 def index():
-    if 'access_token' in session:
-        graph = facebook.GraphAPI(access_token=session['access_token'])
-        user_info = graph.get_object('me')
-        return f"Logged in as: {user_info['name']} (ID: {user_info['id']})"
-    else:
-        return 'Not logged in.'
+    return '<a href="/login">Login with Facebook</a>'
 
 @app.route('/login')
 def login():
-    return redirect(get_facebook_login_url())
+    facebook = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URI)
+    authorization_url, state = facebook.authorization_url(AUTHORIZATION_BASE_URL)
+
+    # Save the state to compare it in the callback
+    session['oauth_state'] = state
+
+    return redirect(authorization_url)
 
 @app.route('/callback')
 def callback():
-    code = request.args.get('code')
-    access_token = get_access_token(code)
-    session['access_token'] = access_token
-    return redirect(url_for('index'))
+    # Check for CSRF attacks
+    # if request.args.get('state') != session.pop('oauth_state', None):
+    #     print('here')
+    #     return 'Invalid state'
 
-def get_facebook_login_url():
-    app_id = 'your_app_id'
-    redirect_uri = url_for('callback', _external=True)
-    graph = facebook.GraphAPI()
-    return graph.get_auth_url(app_id, redirect_uri, scope=['email'])
+    facebook = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URI)
+    token = facebook.fetch_token(TOKEN_URL, client_secret=CLIENT_SECRET, authorization_response=request.url)
 
-def get_access_token(code):
-    app_id = 'your_app_id'
-    app_secret = 'your_app_secret'
-    redirect_uri = url_for('callback', _external=True)
-    graph = facebook.GraphAPI()
-    response = graph.get_access_token_from_code(code, app_id, app_secret, redirect_uri)
-    return response['access_token']
+    # You can now use the token to access the user's data
+    # For example, you can get the user's profile using the Facebook Graph API
+    # For demonstration purposes, let's just return the token
+    print(token)
+    return f'Token: {token}'
 
 if __name__ == '__main__':
+    app.secret_key = 'your_secret_key'
     app.run(debug=True)
