@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, request, session
 from requests_oauthlib import OAuth2Session
+import requests
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -37,6 +38,19 @@ def callback():
 
     facebook = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URI)
     token = facebook.fetch_token(TOKEN_URL, client_secret=CLIENT_SECRET, authorization_response=request.url)
+
+
+    # Use the token to make a request to the Facebook Graph API to get user data
+    graph_api_url = 'https://graph.facebook.com/me'
+    params = {'access_token': token['access_token'], 'fields': 'id,name,email'}
+    response = requests.get(graph_api_url, params=params)
+
+    if response.status_code == 200:
+        user_data = response.json()
+        # Return the user's data (you can customize this response as needed)
+        return f"User ID: {user_data['id']}, Name: {user_data['name']}, Email: {user_data.get('email', 'N/A')}"
+    else:
+        return 'Failed to fetch user data from Facebook Graph API'
 
     # You can now use the token to access the user's data
     # For example, you can get the user's profile using the Facebook Graph API
