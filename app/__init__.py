@@ -7,7 +7,8 @@ app.secret_key = 'your_secret_key'
 # Facebook OAuth configuration
 CLIENT_ID = '687317540258045'
 CLIENT_SECRET = 'ec6e8f1c07710a41162de17ed1851a3d'
-REDIRECT_URI = 'http://localhost:5000/callback'  # Set this to your callback URL
+# REDIRECT_URI = 'http://localhost:5000/callback'  # Set this to your callback URL
+REDIRECT_URI = 'https://facebook-login-v03a.onrender.com/callback'  # Set this to your callback URL
 
 # Facebook OAuth endpoints
 AUTHORIZATION_BASE_URL = 'https://www.facebook.com/v11.0/dialog/oauth'
