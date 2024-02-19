@@ -2,6 +2,7 @@ from flask import Flask, redirect, url_for, request, session
 from requests_oauthlib import OAuth2Session
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
 
 # Facebook OAuth configuration
 CLIENT_ID = '687317540258045'
@@ -42,6 +43,3 @@ def callback():
     print(token)
     return f'Token: {token}'
 
-if __name__ == '__main__':
-    app.secret_key = 'your_secret_key'
-    app.run(debug=True)
