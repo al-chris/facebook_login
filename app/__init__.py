@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, request, session, jsonify
 from requests_oauthlib import OAuth2Session
+from requests_oauthlib.compliance_fixes import facebook_compliance_fix
 import requests
 
 app = Flask(__name__)
@@ -22,6 +23,7 @@ def index():
 @app.route('/login')
 def login():
     facebook = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URI)
+    facebook = facebook_compliance_fix(facebook)
     authorization_url, state = facebook.authorization_url(AUTHORIZATION_BASE_URL)
 
     # Save the state to compare it in the callback
