@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request, session
+from flask import Flask, redirect, url_for, request, session, jsonify
 from requests_oauthlib import OAuth2Session
 import requests
 
@@ -48,13 +48,11 @@ def callback():
     if response.status_code == 200:
         user_data = response.json()
         # Return the user's data (you can customize this response as needed)
-        return f"User ID: {user_data['id']}, Name: {user_data['name']}, Email: {user_data.get('email', 'N/A')}"
+        # return f"User ID: {user_data['id']}, Name: {user_data['name']}, Email: {user_data.get('email', 'N/A')}"
+        return jsonify(user_data), 200
     else:
         return 'Failed to fetch user data from Facebook Graph API'
 
     # You can now use the token to access the user's data
     # For example, you can get the user's profile using the Facebook Graph API
     # For demonstration purposes, let's just return the token
-    print(token)
-    return f'Token: {token}'
-
