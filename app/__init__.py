@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request, session, jsonify
+from flask import Flask, render_template, request, session, jsonify
 from requests_oauthlib import OAuth2Session
 from requests_oauthlib.compliance_fixes import facebook_compliance_fix
 import requests
@@ -18,43 +18,14 @@ TOKEN_URL = 'https://graph.facebook.com/v11.0/oauth/access_token'
 
 @app.route('/')
 def index():
-    return '<a href="/login">Login with Facebook</a>'
+    return render_template("index.html")
 
-@app.route('/login')
-def login():
-    facebook = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URI)
-    facebook = facebook_compliance_fix(facebook)
-    authorization_url, state = facebook.authorization_url(AUTHORIZATION_BASE_URL)
+@app.route('/terms_of_service')
+def t_o_s():
+    return render_template("terms_of_service.html")
 
-    # Save the state to compare it in the callback
-    session['oauth_state'] = state
+@app.route('/privacy_policy')
+def privacy():
+    return render_template("privacy_policy")
 
-    return redirect(authorization_url)
-
-@app.route('/callback')
-def callback():
-    # Check for CSRF attacks
-    # if request.args.get('state') != session.pop('oauth_state', None):
-    #     print('here')
-    #     return 'Invalid state'
-
-    facebook = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URI)
-    token = facebook.fetch_token(TOKEN_URL, client_secret=CLIENT_SECRET, authorization_response=request.url)
-
-
-    # Use the token to make a request to the Facebook Graph API to get user data
-    graph_api_url = 'https://graph.facebook.com/me'
-    params = {'access_token': token['access_token'], 'fields': 'id,name,email'}
-    response = requests.get(graph_api_url, params=params)
-
-    if response.status_code == 200:
-        user_data = response.json()
-        # Return the user's data (you can customize this response as needed)
-        # return f"User ID: {user_data['id']}, Name: {user_data['name']}, Email: {user_data.get('email', 'N/A')}"
-        return jsonify(user_data), 200
-    else:
-        return 'Failed to fetch user data from Facebook Graph API'
-
-    # You can now use the token to access the user's data
-    # For example, you can get the user's profile using the Facebook Graph API
-    # For demonstration purposes, let's just return the token
+from app import facebook, tiktok, google

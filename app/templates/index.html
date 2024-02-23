@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            text-align: center;
+            padding: 50px 0;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>TEST AUTH</h1>
+    </header>
+
+    <main>
+        <a href="{{ url_for('google_login') }}" target="_blank"><img class="icon"
+                src="https://cdn.jsdelivr.net/npm/simple-icons@4.25.0/icons/google.svg" alt="Google"></a>
+        <a href="{{ url_for('fb_login') }}" target="_blank"><img class="icon"
+                src="https://simpleicons.org/icons/facebook.svg" alt="Facebook"></a>
+        <a href="{{ url_for('tiktok_login') }} target="_blank"><img class="icon"
+                src="https://simpleicons.org/icons/tiktok.svg" alt="TikTok"></a>
+    </main>
+
+    <footer>
+        <a href="{{ url_for('privacy') }}">Privacy Policy</a> | <a href="{{ url_for('t_o_s') }}">Terms of Service</a>
+    </footer>
+</body>
+
+</html>
