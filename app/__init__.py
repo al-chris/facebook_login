@@ -28,4 +28,4 @@ def t_o_s():
 def privacy():
     return render_template("privacy_policy")
 
-from app import facebook, tiktok, google
+from app import facebook, tiktok, google, jwt
