@@ -3,8 +3,8 @@ from requests_oauthlib import OAuth2Session
 from app import app
 
 # TikTok OAuth configuration
-CLIENT_ID = ''
-CLIENT_SECRET = ''
+CLIENT_ID = 'awr1u1fy6kd6zxeg'
+CLIENT_SECRET = 'VxKAxyzXVlUd1ypeeDHDWscgKBGvottP'
 # REDIRECT_URI = 'http://localhost:5000/tiktok/callback'  # Set this to your callback URL
 REDIRECT_URI = 'https://test-auth-i2mu.onrender.com/tiktok/callback'
 
