@@ -26,6 +26,6 @@ def t_o_s():
 
 @app.route('/privacy_policy')
 def privacy():
-    return render_template("privacy_policy")
+    return render_template("privacy_policy.html")
 
 from app import facebook, tiktok, google, jwt
