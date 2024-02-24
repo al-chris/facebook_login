@@ -48,7 +48,7 @@ import os
 
 
 @app.route('/login/tiktok')
-def oauth():
+def tiktok_login():
     csrf_state = str(random.random())[2:]
     response = make_response()
     response.set_cookie('csrfState', csrf_state, max_age=60000)
