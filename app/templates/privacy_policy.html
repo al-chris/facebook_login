@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h1>Privacy Policy</h1>
-    <p>Your privacy is important to us. It is TEST AUTH's policy to respect your privacy regarding any information we may collect while operating our Flask app.</p>
-    <ol>
-        <li><strong>Information Collection:</strong> We do not collect any personal information from users of our Flask app.</li>
-        <li><strong>Log Data:</strong> Like many site operators, we collect information that your browser sends whenever you visit our Flask app ("Log Data"). This Log Data may include information such as your computer's Internet Protocol ("IP") address, browser type, browser version, the pages of our Flask app that you visit, the time and date of your visit, the time spent on those pages, and other statistics.</li>
-        <li><strong>Cookies:</strong> Our Flask app does not use cookies.</li>
-        <li><strong>Third-Party Services:</strong> Our Flask app may use third-party services that collect information used to identify you. Please refer to the privacy policies of these third-party services for more information on how they handle your data.</li>
-        <li><strong>Changes to Privacy Policy:</strong> We reserve the right to update or change our Privacy Policy at any time. Your continued use of our Flask app after we post any modifications to the Privacy Policy on this page will constitute your acknowledgment of the modifications and your consent to abide and be bound by the modified Privacy Policy.</li>
-        <li><strong>Contact Us:</strong> If you have any questions about our Privacy Policy, please contact us at chrisdev0000@gmail.com.</li>
-    </ol>
+    <header>
+        <h1>Privacy Policy</h1>
+    </header>
+    <div id="main">
+        <p>Your privacy is important to us. It is TEST AUTH's policy to respect your privacy regarding any information we may collect while operating our Flask app.</p>
+        <ol>
+            <li><strong>Information Collection:</strong> We do not collect any personal information from users of our Flask app.</li>
+            <li><strong>Log Data:</strong> Like many site operators, we collect information that your browser sends whenever you visit our Flask app ("Log Data"). This Log Data may include information such as your computer's Internet Protocol ("IP") address, browser type, browser version, the pages of our Flask app that you visit, the time and date of your visit, the time spent on those pages, and other statistics.</li>
+            <li><strong>Cookies:</strong> Our Flask app does not use cookies.</li>
+            <li><strong>Third-Party Services:</strong> Our Flask app may use third-party services that collect information used to identify you. Please refer to the privacy policies of these third-party services for more information on how they handle your data.</li>
+            <li><strong>Changes to Privacy Policy:</strong> We reserve the right to update or change our Privacy Policy at any time. Your continued use of our Flask app after we post any modifications to the Privacy Policy on this page will constitute your acknowledgment of the modifications and your consent to abide and be bound by the modified Privacy Policy.</li>
+            <li><strong>Contact Us:</strong> If you have any questions about our Privacy Policy, please contact us at email@gmail.com.</li>
+        </ol>
+    </div>
+    <footer>
+        <a href="{{ url_for('privacy') }}">Privacy Policy</a> | <a href="{{ url_for('t_o_s') }}">Terms of Service</a>
+    </footer>
 </body>
 </html>
