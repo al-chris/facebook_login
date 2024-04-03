@@ -45,3 +45,16 @@ def google_callback():
         return render_template("dashboard.html", user_data=user_data)
     else:
         return 'Failed to fetch user data from Google API'
+
+
+
+# {
+#     'id': '101278525397366933741',
+#     'email': 'christopheraliu07@gmail.com',
+#     'verified_email': True,
+#     'name': 'Al Chris',
+#     'given_name': 'Al',
+#     'family_name': 'Chris',
+#     'picture': 'https://lh3.googleusercontent.com/a/ACg8ocIZOw30iSLXQIvvU7B9OkqtGFc0WYhmP2dcapuAAnKU4z0WntnP=s96-c',
+#     'locale': 'en-GB'
+# }
