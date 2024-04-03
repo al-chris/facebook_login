@@ -42,6 +42,6 @@ def google_callback():
         user_data = response.json()
         print(user_data)
         # Return the user's data (you can customize this response as needed)
-        return render_template("dashboard.html", user_data)
+        return render_template("dashboard.html", user_data=user_data)
     else:
         return 'Failed to fetch user data from Google API'
