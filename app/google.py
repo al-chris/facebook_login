@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, session, jsonify
+from flask import Flask, redirect, request, session, jsonify, render_template
 from requests_oauthlib import OAuth2Session
 from app import app
 import os
@@ -40,7 +40,8 @@ def google_callback():
 
     if response.status_code == 200:
         user_data = response.json()
+        print(user_data)
         # Return the user's data (you can customize this response as needed)
-        return jsonify(user_data), 200
+        return render_template("dashboard.html", user_data)
     else:
         return 'Failed to fetch user data from Google API'

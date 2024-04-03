@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .dashboard {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .content {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        
+        .content h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .content p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <h1>Welcome to the Dashboard, {{ user_data.email }}</h1>
+            <p>This is your personalized dashboard. You can add your content here.</p>
+            
+            <div class="content">
+                <h2>Notifications</h2>
+                <p>Here are your latest notifications:</p>
+                <ul>
+                    <li>Notification 1: New message received</li>
+                    <li>Notification 2: Task assigned to you</li>
+                    <li>Notification 3: Event reminder</li>
+                </ul>
+            </div>
+
+            <div class="content"></div>
+                <h2>Calendar</h2>
+                <p>Here is your upcoming schedule:</p>
+                <ul>
+                    <li>Event 1: Meeting with client - Tomorrow at 10 AM</li>
+                    <li>Event 2: Team lunch - Next Friday at 12 PM</li>
+                    <li>Event 3: Project deadline - Next month</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2021 Test Auth</p>
+</body>
+</html>
